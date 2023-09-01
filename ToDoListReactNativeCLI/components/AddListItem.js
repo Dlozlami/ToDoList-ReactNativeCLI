@@ -19,7 +19,7 @@ const AddListItem = ({visible, addItem}) => {
   };
 
   return (
-    <Modal animationType="slide" transparent={true} visible={visible}>
+    <Modal animationType="slide" visible={visible}>
       <View>
         <TextInput
           placeholder="Deadline"
