@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
-import {AntDesign} from '@expo/vector-icons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import ListCard from './components/ListCard';
 import AddListItem from './components/AddListItem';
 
