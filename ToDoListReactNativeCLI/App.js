@@ -3,7 +3,19 @@ import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ListCard from './components/ListCard';
 import AddListItem from './components/AddListItem';
+import { initializeApp } from "firebase/app";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyA3N-X2ZKQeW9TbeDSd7byriCj6eFQDN34",
+  authDomain: "todolistreactnative-1bc76.firebaseapp.com",
+  projectId: "todolistreactnative-1bc76",
+  storageBucket: "todolistreactnative-1bc76.appspot.com",
+  messagingSenderId: "895385423548",
+  appId: "1:895385423548:web:6d4c011fec3ffc5a134ab9",
+  measurementId: "G-4CQC20D8HZ"
+};
+
+initializeApp(firebaseConfig);
 const List = () => {
   const [tasks, setTasks] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
@@ -12,7 +24,7 @@ const List = () => {
     setTasks([...tasks, item]);
     setModalVisible(false);
   };
-  
+
 
   return (
     <View style={{padding: 10, flex: 1}}>
