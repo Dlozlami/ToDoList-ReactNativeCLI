@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
-import {AntDesign} from '@expo/vector-icons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import ListCard from './components/ListCard';
 import AddListItem from './components/AddListItem';
 
@@ -14,30 +14,33 @@ const List = () => {
   };
 
   return (
-    <View>
-      {tasks.length === 0 ? (
-        <Text>No items to display.</Text>
-      ) : (
-        <FlatList
-          data={tasks}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({item}) => <ListCard item={item} />}
-        />
-      )}
+    <>
+      <View>
+        {tasks.length === 0 ? (
+          <Text>No items to display..</Text>
+        ) : (
+          <FlatList
+            data={tasks}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({item}) => <ListCard item={item} />}
+          />
+        )}
 
+        <AddListItem visible={modalVisible} addItem={addItem} />
+      </View>
       <TouchableOpacity
         style={{
           position: 'absolute',
-          bottom: 20,
-          right: 20,
-          zIndex: 10,
+          bottom: 0,
+          right: 0,
+          zIndex: 1,
         }}
         onPress={() => setModalVisible(true)}>
-        <AntDesign name="pluscircleo" size={40} color="black" />
+        <Text>
+          <AntDesign name="pluscircleo" size={40} color="black" />+
+        </Text>
       </TouchableOpacity>
-
-      <AddListItem visible={modalVisible} addItem={addItem} />
-    </View>
+    </>
   );
 };
 
