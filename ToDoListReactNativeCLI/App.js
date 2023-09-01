@@ -12,6 +12,7 @@ const List = () => {
     setTasks([...tasks, item]);
     setModalVisible(false);
   };
+  
 
   return (
     <View style={{padding: 10, flex: 1}}>
@@ -37,8 +38,8 @@ const List = () => {
         }}
         onPress={() => setModalVisible(true)}>
         <Text>
-          <AntDesign name="pluscircle" size={40} color="black" />+
-        </Text>
+          <AntDesign name="pluscircle" size={40} color="black" />
+        </Text> 
       </TouchableOpacity>
     </View>
   );
