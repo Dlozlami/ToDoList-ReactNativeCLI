@@ -1,12 +1,44 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
+import {View, Text, FlatList, TouchableOpacity} from 'react-native';
+import {AntDesign} from '@expo/vector-icons';
+import ListCard from './components/ListCard';
+import AddListItem from './components/AddListItem';
 
-export default function App() {
+const List = () => {
+  const [tasks, setTasks] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const addItem = item => {
+    setTasks([...tasks, item]);
+    setModalVisible(false);
+  };
+
   return (
     <View>
-      <Text>Dlozi and Ristar in a team safds thlogi</Text>
+      {tasks.length === 0 ? (
+        <Text>No items to display.</Text>
+      ) : (
+        <FlatList
+          data={tasks}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({item}) => <ListCard item={item} />}
+        />
+      )}
+
+      <TouchableOpacity
+        style={{
+          position: 'absolute',
+          bottom: 20,
+          right: 20,
+          zIndex: 10,
+        }}
+        onPress={() => setModalVisible(true)}>
+        <AntDesign name="pluscircleo" size={40} color="black" />
+      </TouchableOpacity>
+
+      <AddListItem visible={modalVisible} addItem={addItem} />
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({});
+export default List;
