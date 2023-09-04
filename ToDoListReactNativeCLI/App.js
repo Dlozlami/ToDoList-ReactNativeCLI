@@ -44,12 +44,12 @@ const List = () => {
       <TouchableOpacity
         style={{
           position: 'absolute',
-          bottom: 0,
-          right: 0,
+          bottom: 10,
+          right: 10,
           zIndex: 1,
           backgroundColor: 'blue',
-          paddingHorizontal: 10,
-          paddingVertical: 10,
+          paddingHorizontal: 20,
+          paddingVertical: 0,
           borderRadius: 100,
         }}
         onPress={() => setModalVisible(true)}>

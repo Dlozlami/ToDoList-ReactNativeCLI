@@ -75,7 +75,7 @@ const ListCard = ({item, deleteItem}) => {
       </View>
 
       <Modal animationType="slide" visible={modalVisible}>
-        <View>
+        <View style={{padding: 10}}>
           <View>
             <TextInput
               placeholder="Deadline"

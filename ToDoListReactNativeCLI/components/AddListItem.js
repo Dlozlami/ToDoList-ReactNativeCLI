@@ -20,7 +20,7 @@ const AddListItem = ({visible, addItem, close}) => {
 
   return (
     <Modal animationType="slide" visible={visible}>
-      <View>
+      <View style={{padding: 10}}>
         <TextInput
           placeholder="Deadline"
           value={deadline}
@@ -41,23 +41,24 @@ const AddListItem = ({visible, addItem, close}) => {
           value={status}
           onChangeText={text => setStatus(text)}
         />
-      </View>
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}>
-        <TouchableOpacity
-          onPress={handleAddItem}
-          style={{padding: 10, backgroundColor: 'blue', borderRadius: 10}}>
-          <Text style={{color: 'white'}}>Add Item</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => close()}
-          style={{padding: 10, backgroundColor: 'red', borderRadius: 10}}>
-          <Text style={{color: 'white'}}>Cancel</Text>
-        </TouchableOpacity>
+
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}>
+          <TouchableOpacity
+            onPress={handleAddItem}
+            style={{padding: 10, backgroundColor: 'blue', borderRadius: 10}}>
+            <Text style={{color: 'white'}}>Add Item</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => close()}
+            style={{padding: 10, backgroundColor: 'red', borderRadius: 10}}>
+            <Text style={{color: 'white'}}>Cancel</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </Modal>
   );
