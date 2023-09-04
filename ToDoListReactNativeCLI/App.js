@@ -26,7 +26,11 @@ const List = () => {
           />
         )}
 
-        <AddListItem visible={modalVisible} addItem={addItem} />
+        <AddListItem
+          visible={modalVisible}
+          addItem={addItem}
+          close={() => setModalVisible(false)}
+        />
       </View>
       <TouchableOpacity
         style={{

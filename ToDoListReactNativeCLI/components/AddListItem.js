@@ -42,6 +42,7 @@ const AddListItem = ({visible, addItem}) => {
           onChangeText={text => setStatus(text)}
         />
         <Button title="Add Item" onPress={handleAddItem} />
+        <Button title="Cancel" onPress={() => set} />
       </View>
     </Modal>
   );
