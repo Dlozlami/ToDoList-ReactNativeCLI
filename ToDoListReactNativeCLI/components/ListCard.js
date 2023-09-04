@@ -1,5 +1,4 @@
-// ListCard.js
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -7,9 +6,10 @@ import {
   Modal,
   TextInput,
   Button,
+  StyleSheet
 } from 'react-native';
 
-const ListCard = ({item,deleteItem}) => {  
+const ListCard = ({ item, deleteItem }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [editedTask, setEditedTask] = useState(item.task);
 
@@ -17,22 +17,31 @@ const ListCard = ({item,deleteItem}) => {
     setModalVisible(true);
   };
 
-  const saveEdit = () => {    
+  const saveEdit = () => {
     setModalVisible(false);
   };
- 
-  const handleDelete = () => {   
+
+  const handleDelete = () => {
     deleteItem(item);
   };
 
-  
   return (
     <View>
-      {/* Display task information here */}
-      <Text>{item.deadline}</Text>
-      <Text>{item.task}</Text>
-      <Text>{item.Priority}</Text>
-      <Text>{item.status}</Text>
+     
+      <View style={styles.labelRow}>
+        <Text style={styles.label}>Task:</Text>
+        <Text style={styles.label}>Deadline:</Text>
+        <Text style={styles.label}>Priority:</Text>
+        <Text style={styles.label}>Status:</Text>
+      </View>
+
+      
+      <View style={styles.valueRow}>
+        <Text style={styles.value}>{item.task}</Text>
+        <Text style={styles.value}>{item.deadline}</Text>
+        <Text style={styles.value}>{item.Priority}</Text>
+        <Text style={styles.value}>{item.status}</Text>
+      </View>
 
       <TouchableOpacity onPress={handleEdit}>
         <Text>Edit</Text>
@@ -45,7 +54,7 @@ const ListCard = ({item,deleteItem}) => {
         <View>
           <TextInput
             value={editedTask}
-            onChangeText={text => setEditedTask(text)}
+            onChangeText={(text) => setEditedTask(text)}
           />
           <Button title="Save" onPress={saveEdit} />
           <Button title="Cancel" onPress={() => setModalVisible(false)} />
@@ -54,5 +63,27 @@ const ListCard = ({item,deleteItem}) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 10,
+  },
+  labelRow: {
+    flexDirection: 'row',
+    marginBottom: 8,
+  },
+  label: {
+    flex: 1,
+    fontWeight: 'bold',
+    marginRight: 4,
+  },
+  valueRow: {
+    flexDirection: 'row',
+    marginBottom: 8,
+  },
+  value: {
+    flex: 1,
+  },
+});
 
 export default ListCard;
