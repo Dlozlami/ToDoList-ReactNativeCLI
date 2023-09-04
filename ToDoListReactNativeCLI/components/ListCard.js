@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {
   View,
   Text,
@@ -11,13 +11,22 @@ import {
 
 const ListCard = ({ item, deleteItem }) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [editedTask, setEditedTask] = useState(item.task);
-
+  const [deadline, setDeadline] = useState(item.deadline);
+  const [task, setTask] = useState(item.task);
+  const [priority, setPriority] = useState(item.Priority);
+  const [status, setStatus] = useState(item.status);
+  
   const handleEdit = () => {
+    item.deadline=deadline;
+    item.task=task;
+    item.Priority = priority;
+    item.status= status;
     setModalVisible(true);
   };
 
   const saveEdit = () => {
+    // useEffect(() => {    
+    // }, [item]);
     setModalVisible(false);
   };
 
@@ -46,16 +55,35 @@ const ListCard = ({ item, deleteItem }) => {
       <TouchableOpacity onPress={handleEdit}>
         <Text>Edit</Text>
       </TouchableOpacity>
+      
       <TouchableOpacity onPress={handleDelete}>
         <Text>Delete</Text>
       </TouchableOpacity>
 
-      <Modal animationType="slide" transparent={true} visible={modalVisible}>
+      <Modal animationType="slide" visible={modalVisible}>
         <View>
-          <TextInput
-            value={editedTask}
-            onChangeText={(text) => setEditedTask(text)}
-          />
+        <View>
+        <TextInput
+          placeholder="Deadline"
+          value={deadline}
+          onChangeText={text => setDeadline(text)}
+        />
+        <TextInput
+          placeholder="Task"
+          value={task}
+          onChangeText={text => setTask(text)}
+        />
+        <TextInput
+          placeholder="Priority"
+          value={priority}
+          onChangeText={text => setPriority(text)}
+        />
+        <TextInput
+          placeholder="Status"
+          value={status}
+          onChangeText={text => setStatus(text)}
+        />
+      </View>
           <Button title="Save" onPress={saveEdit} />
           <Button title="Cancel" onPress={() => setModalVisible(false)} />
         </View>
