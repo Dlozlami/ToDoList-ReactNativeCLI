@@ -3,19 +3,7 @@ import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ListCard from './components/ListCard';
 import AddListItem from './components/AddListItem';
-import { initializeApp } from "firebase/app";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyA3N-X2ZKQeW9TbeDSd7byriCj6eFQDN34",
-  authDomain: "todolistreactnative-1bc76.firebaseapp.com",
-  projectId: "todolistreactnative-1bc76",
-  storageBucket: "todolistreactnative-1bc76.appspot.com",
-  messagingSenderId: "895385423548",
-  appId: "1:895385423548:web:6d4c011fec3ffc5a134ab9",
-  measurementId: "G-4CQC20D8HZ"
-};
-
-initializeApp(firebaseConfig);
 const List = () => {
   const [tasks, setTasks] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
@@ -25,7 +13,13 @@ const List = () => {
     setModalVisible(false);
   };
 
+  const deleteItem = item =>{
+    const updatedTasks = tasks.filter(task => task !== item);
+    console.log('deleted item is: ', updatedTasks)
+    setTasks(updatedTasks);
+   }
 
+ 
   return (
     <View style={{padding: 10, flex: 1}}>
       <View>
@@ -35,11 +29,13 @@ const List = () => {
           <FlatList
             data={tasks}
             keyExtractor={(item, index) => index.toString()}
-            renderItem={({item}) => <ListCard item={item} />}
+            renderItem={({item}) => <ListCard item={item} deleteItem={deleteItem}/>}
+            //  
           />
         )}
 
         <AddListItem visible={modalVisible} addItem={addItem} />
+        
       </View>
       <TouchableOpacity
         style={{
@@ -51,6 +47,7 @@ const List = () => {
         onPress={() => setModalVisible(true)}>
         <Text>
           <AntDesign name="pluscircle" size={40} color="black" />
+         
         </Text> 
       </TouchableOpacity>
     </View>
