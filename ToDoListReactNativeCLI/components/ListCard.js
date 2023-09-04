@@ -9,7 +9,7 @@ import {
   Button,
 } from 'react-native';
 
-const ListCard = ({item}) => {
+const ListCard = ({item,deleteItem}) => {  
   const [modalVisible, setModalVisible] = useState(false);
   const [editedTask, setEditedTask] = useState(item.task);
 
@@ -17,17 +17,15 @@ const ListCard = ({item}) => {
     setModalVisible(true);
   };
 
-  const saveEdit = () => {
-    // Implement your update logic here.
-    // Update the task with the editedTask value.
+  const saveEdit = () => {    
     setModalVisible(false);
   };
-
-  const deleteTask = () => {
-    // Implement your delete logic here.
-    // Remove the task from the tasks list.
+ 
+  const handleDelete = () => {   
+    deleteItem(item);
   };
 
+  
   return (
     <View>
       {/* Display task information here */}
@@ -39,7 +37,7 @@ const ListCard = ({item}) => {
       <TouchableOpacity onPress={handleEdit}>
         <Text>Edit</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={deleteTask}>
+      <TouchableOpacity onPress={handleDelete}>
         <Text>Delete</Text>
       </TouchableOpacity>
 

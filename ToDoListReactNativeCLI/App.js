@@ -13,6 +13,13 @@ const List = () => {
     setModalVisible(false);
   };
 
+  const deleteItem = item =>{
+    const updatedTasks = tasks.filter(task => task !== item);
+    console.log('deleted item is: ', updatedTasks)
+    setTasks(updatedTasks);
+   }
+
+ 
   return (
     <View style={{padding: 10, flex: 1}}>
       <View>
@@ -22,15 +29,12 @@ const List = () => {
           <FlatList
             data={tasks}
             keyExtractor={(item, index) => index.toString()}
-            renderItem={({item}) => <ListCard item={item} />}
+            renderItem={({item}) => <ListCard item={item} deleteItem={deleteItem}/>}
+            //  
           />
         )}
 
-        <AddListItem
-          visible={modalVisible}
-          addItem={addItem}
-          close={() => setModalVisible(false)}
-        />
+        <AddListItem visible={modalVisible} addItem={addItem} />
       </View>
       <TouchableOpacity
         style={{
@@ -41,8 +45,9 @@ const List = () => {
         }}
         onPress={() => setModalVisible(true)}>
         <Text>
-          <AntDesign name="pluscircle" size={40} color="black" />+
-        </Text>
+          <AntDesign name="pluscircle" size={40} color="black" />
+         
+        </Text> 
       </TouchableOpacity>
     </View>
   );
