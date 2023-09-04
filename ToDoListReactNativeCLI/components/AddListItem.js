@@ -50,12 +50,12 @@ const AddListItem = ({visible, addItem, close}) => {
         }}>
         <TouchableOpacity
           onPress={handleAddItem}
-          style={{padding: 10, backgroundColor: 'blue'}}>
+          style={{padding: 10, backgroundColor: 'blue', borderRadius: 10}}>
           <Text style={{color: 'white'}}>Add Item</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => close()}
-          style={{padding: 10, backgroundColor: 'red'}}>
+          style={{padding: 10, backgroundColor: 'red', borderRadius: 10}}>
           <Text style={{color: 'white'}}>Cancel</Text>
         </TouchableOpacity>
       </View>
