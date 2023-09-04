@@ -1,6 +1,6 @@
 // AddListItem.js
 import React, {useState} from 'react';
-import {View, Modal, TextInput, Button} from 'react-native';
+import {View, Modal, TextInput, TouchableOpacity, Text} from 'react-native';
 
 const AddListItem = ({visible, addItem, close}) => {
   const [deadline, setDeadline] = useState('');
@@ -41,8 +41,23 @@ const AddListItem = ({visible, addItem, close}) => {
           value={status}
           onChangeText={text => setStatus(text)}
         />
-        <Button title="Add Item" onPress={handleAddItem} />
-        <Button title="Cancel" onPress={() => close()} />
+      </View>
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}>
+        <TouchableOpacity
+          onPress={handleAddItem}
+          style={{padding: 10, backgroundColor: 'blue'}}>
+          <Text style={{color: 'white'}}>Add Item</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => close()}
+          style={{padding: 10, backgroundColor: 'red'}}>
+          <Text style={{color: 'white'}}>Cancel</Text>
+        </TouchableOpacity>
       </View>
     </Modal>
   );
