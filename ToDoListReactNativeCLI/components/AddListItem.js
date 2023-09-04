@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 import {View, Modal, TextInput, Button} from 'react-native';
 
-const AddListItem = ({visible, addItem}) => {
+const AddListItem = ({visible, addItem, close}) => {
   const [deadline, setDeadline] = useState('');
   const [task, setTask] = useState('');
   const [priority, setPriority] = useState('');
@@ -42,7 +42,7 @@ const AddListItem = ({visible, addItem}) => {
           onChangeText={text => setStatus(text)}
         />
         <Button title="Add Item" onPress={handleAddItem} />
-        <Button title="Cancel" onPress={() => set} />
+        <Button title="Cancel" onPress={() => close()} />
       </View>
     </Modal>
   );
